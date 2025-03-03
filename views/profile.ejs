@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('comp/header') %>
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            border-radius: 10px;
+            background-color: #ffffff;
+        }
+
+        h3 {
+            color: #2c3e50;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        .btn-warning {
+            background-color: #ff8c00;
+            border: none;
+        }
+
+        .btn-warning:hover {
+            background-color: #e67e00;
+        }
+
+        .bi-pencil {
+            margin-left: 5px;
+        }
+
+        p {
+            margin-bottom: 0;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        /* Style for the camera icon */
+        #fileInput {
+            display: none;
+        }
+
+        #icon {
+            width: 100px;
+            cursor: pointer;
+        }
+
+        .bi-camera {
+            color: #fff;
+            /* Black color to match the image */
+            border: 2px solid #fff;
+            /* White border to match the image */
+            z-index: 1;
+            right: 15px;
+            top: 5px;
+            background-color: #de881f;
+        }
+
+        .position-absolute {
+            top: 10px;
+            right: 5px;
+        }
+    </style>
+
+    <body>
+        <div class="container-scroller">
+            <div class="col-md-12 p-0 m-0">
+                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+                    <div class="ps-lg-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates,
+                                and more with this template!</p>
+                            <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"
+                                target="_blank" class="btn me-2 buy-now-btn border-0">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"><i
+                                class="mdi mdi-home me-3 text-white"></i></a>
+                        <button id="bannerClose" class="btn border-0 p-0">
+                            <i class="mdi mdi-close text-white mr-0"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('comp/navbar') %>
+
+            <div class="container-fluid page-body-wrapper">
+                <!-- partial:partials/_sidebar.html -->
+                <%- include('comp/sidebar') %>
+
+                    <div class="container mt-5">
+                        <div class="card p-4 shadow-sm">
+                            <div class="d-flex align-items-center mb-4">
+                                <div class="position-relative">
+                                    <img src="<%= user.avatar ? user.avatar : '../assets/images/faces/face1.jpg' %>" alt="Profile Picture"
+                                        class="rounded-circle me-3" style="width: 80px; height: 80px;object-fit: cover;" id="profileImg">
+                                    <form action="/addAvatar/<%= user.id %>" method="post" enctype="multipart/form-data">
+                                        <label for="fileInput" style="cursor: pointer;">
+                                            <i class="bi bi-camera position-absolute rounded-circle p-1"
+                                                style="font-size: 1rem;"></i>
+                                        </label>
+                                        <input id="fileInput" type="file" name="avatar">
+                                        <input type="submit" value="Save" class="btn btn-warning"
+                                            style="font-size: 18px;padding: 5px 25px;margin-top: 10px;">
+                                    </form>
+                                </div>
+                                <div class="ms-4">
+                                    <h3 class="mb-0">
+                                        <%= user.username %>
+                                    </h3>
+                                    <p class="text-muted"><%= user.city ? user.city : 'City Not Available.' %></p>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="title d-flex align-items-center justify-content-between mb-3">
+                                    <h5><b>Personal Information</b></h5>
+                                    <a href="/editInfo/<%= user._id %>" class="btn btn-warning">Edit <i
+                                            class="bi bi-pencil"></i></a>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <p><strong>Username:</strong>
+                                            <%= user.username ? user.username : 'Not Available.' %>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <p><strong>Email Address:</strong>
+                                            <%= user.email ? user.email : 'Not Available.' %>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>Phone Number:</strong> <%= user.pno ? user.pno : 'Not Available.' %></p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p><strong>User Role:</strong> <%= user.role ? user.role : 'Not Available.' %></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="title d-flex align-items-center justify-content-between mb-3">
+                                    <h5><b>Address</b></h5>
+                                    <a href="/editAddress/<%= user._id %>" class="btn btn-warning">Edit <i
+                                            class="bi bi-pencil"></i></a>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <p><strong>Country:</strong> <%= user.country ? user.country : 'Not Available.' %></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>City:</strong> <%= user.city ? user.city : 'Not Available.' %></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><strong>Postal Code:</strong> <%= user.zipcode ? user.zipcode : 'Not Available.' %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <%- include('comp/footer') %>
+
+    </body>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function (event) {
+
+            const file = event.target.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('profileImg').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</html>

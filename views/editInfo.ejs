@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('comp/header') -%>
+
+    <style>
+        
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 576px) {
+            .form-container {
+                margin: 15px;
+                padding: 15px;
+            }
+        }
+    </style>
+
+    <body>
+        <div class="container-scroller">
+            <div class="col-md-12 p-0 m-0">
+                <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
+                    <div class="ps-lg-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates,
+                                and more with this template!</p>
+                            <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"
+                                target="_blank" class="btn me-2 buy-now-btn border-0">Buy Now</a>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"><i
+                                class="mdi mdi-home me-3 text-white"></i></a>
+                        <button id="bannerClose" class="btn border-0 p-0">
+                            <i class="mdi mdi-close text-white mr-0"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('comp/navbar') %>
+
+            <div class="container-fluid page-body-wrapper">
+
+                <%- include('comp/sidebar') %>
+
+                    <div class="container mt-5">
+                        <div class="form-container">
+                            <h2 class="form-title">Edit User Details</h2>
+                            <form action="/updateInfo/<%= user._id %>" method="post">
+                                
+                                <div class="mb-4">
+                                    <label for="username" class="form-label mb-3">Username</label>
+                                    <input type="text" class="form-control" name="username" placeholder="Enter username" >
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="email" class="form-label mb-3">Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Enter email">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="pno" class="form-label mb-3">Phone Number</label>
+                                    <input type="tel" class="form-control" name="pno" placeholder="Enter phone number" pattern="[0-9]{10}">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="role" class="form-label mb-3">User Role</label>
+                                    <input type="text" name="role" class="form-control" placeholder="Enter Your Role">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-submit">Save Changes</button>
+                            </form>
+                        </div>
+                    </div>
+
+            </div>
+
+        <%- include('comp/footer') %>
+
+    </body>
+
+</html>
