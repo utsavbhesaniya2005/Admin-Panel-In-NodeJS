@@ -95,7 +95,9 @@ const myProfile = async (req, res) => {
 
     let user = await userModel.findOne({_id : uId});
 
-    res.render('profile', {user});
+    let blogs = await blogModel.find({authorId : uId});
+
+    res.render('profile', {user, blogs});
 }
 
 const addAvatar = async (req, res) => {
@@ -178,9 +180,6 @@ const saveBlogs = async (req, res) => {
 
         const { title, blogImage, blog } = req.body;
 
-        console.log('Fiel >', req.file);
-        
-
         const { path } = req.file;
 
         let newBlog = await new blogModel({
@@ -199,7 +198,17 @@ const saveBlogs = async (req, res) => {
 
         console.log('Adding Blog Error: >>', err);
     }
+}
 
+const allBlogs = async (req, res) => {
+
+    let { uId } = req.cookies;
+
+    let user = await userModel.findOne({_id : uId});
+    
+    let blogs = await blogModel.find({});
+
+    res.render('allBlogs', {user, blogs});
 }
 
 module.exports = {
@@ -217,4 +226,5 @@ module.exports = {
     signOut,
     addBlog,
     saveBlogs,
+    allBlogs,
 }

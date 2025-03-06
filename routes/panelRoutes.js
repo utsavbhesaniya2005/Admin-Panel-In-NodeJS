@@ -50,4 +50,7 @@ route.get('/addBlog', panelController.addBlog);
 // Blog Add 
 route.post('/addBlogs', uploads.single('blogImage'), panelController.saveBlogs);
 
+// Show All Blogs
+route.get('/allBlogs', panelController.allBlogs);
+
 module.exports = route;

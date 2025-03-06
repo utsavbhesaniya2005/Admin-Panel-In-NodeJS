@@ -181,95 +181,9 @@
                 <!-- partial:partials/_sidebar.html -->
                 <%- include('comp/sidebar') %>
 
-                    <div class="container mt-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="card p-4 shadow-sm">
-                                    <div class="d-flex align-items-center mb-4">
-                                        <div class="position-relative">
-                                            <img src="<%= user.avatar ? user.avatar : '../assets/images/faces/face1.jpg' %>"
-                                                alt="Profile Picture" class="rounded-circle me-3"
-                                                style="width: 80px; height: 80px;object-fit: cover;" id="profileImg">
-                                            <form action="/addAvatar/<%= user.id %>" method="post"
-                                                enctype="multipart/form-data">
-                                                <label for="fileInput" style="cursor: pointer;">
-                                                    <i class="bi bi-camera position-absolute rounded-circle p-1"
-                                                        style="font-size: 1rem;"></i>
-                                                </label>
-                                                <input id="fileInput" type="file" name="avatar">
-                                                <input type="submit" value="Save" class="btn btn-warning"
-                                                    style="font-size: 18px;padding: 5px 25px;margin-top: 10px;">
-                                            </form>
-                                        </div>
-                                        <div class="ms-4">
-                                            <h3 class="mb-0">
-                                                <%= user.username %>
-                                            </h3>
-                                            <p class="text-muted">
-                                                <%= user.city ? user.city : 'City Not Available.' %>
-                                            </p>
-                                        </div>
-                                    </div>
-        
-                                    <div class="mb-4">
-                                        <div class="title d-flex align-items-center justify-content-between mb-3">
-                                            <h5><b>Personal Information</b></h5>
-                                            <a href="/editInfo/<%= user._id %>" class="btn btn-warning">Edit <i
-                                                    class="bi bi-pencil"></i></a>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-12">
-                                                <p><strong>Username:</strong>
-                                                    <%= user.username ? user.username : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <p><strong>Email Address:</strong>
-                                                    <%= user.email ? user.email : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><strong>Phone Number:</strong>
-                                                    <%= user.pno ? user.pno : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><strong>User Role:</strong>
-                                                    <%= user.role ? user.role : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-        
-                                    <div>
-                                        <div class="title d-flex align-items-center justify-content-between mb-3">
-                                            <h5><b>Address</b></h5>
-                                            <a href="/editAddress/<%= user._id %>" class="btn btn-warning">Edit <i
-                                                    class="bi bi-pencil"></i></a>
-                                        </div>
-                                        <div class="row g-3">
-                                            <div class="col-md-4">
-                                                <p><strong>Country:</strong>
-                                                    <%= user.country ? user.country : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <p><strong>City:</strong>
-                                                    <%= user.city ? user.city : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <p><strong>Postal Code:</strong>
-                                                    <%= user.zipcode ? user.zipcode : 'Not Available.' %>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="container mt-4">
 
-                        <h1 class="text-center mt-5">My Blogs</h1>
+                        <h1 class="text-center">All Blogs</h1>
 
                         <div class="row justify-content-center my-5">
                             <% if(blogs && blogs.length > 0){ %>
@@ -305,20 +219,5 @@
             <%- include('comp/footer') %>
 
     </body>
-
-    <script>
-        document.getElementById('fileInput').addEventListener('change', function (event) {
-
-            const file = event.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('profileImg').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 
 </html>
