@@ -208,6 +208,8 @@ const allBlogs = async (req, res) => {
     
     let blogs = await blogModel.find({});
 
+    console.log("Blogs", blogs);
+
     res.render('allBlogs', {user, blogs});
 }
 

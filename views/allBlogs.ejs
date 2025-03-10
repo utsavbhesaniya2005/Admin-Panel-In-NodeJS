@@ -192,6 +192,7 @@
                                         <div class="blog-card">
                                             <div class="header p-3 d-flex align-items-center">
                                                 <img src="<%= user.avatar ? user.avatar : '../assets/images/faces/face1.jpg' %>" alt="Profile" class="profile-pic me-2">
+                                                <a href="<%= user.avatar %>">Hello</a>
                                                 <div class="text-white">
                                                     <h3 class="mb-0 fw-bold fs-5"><%= user.username %></h3>
                                                     <small><%= new Date(blog.blogTime).toLocaleString('en-US', {
@@ -202,7 +203,7 @@
                                             </div>
                                             <img src="<%= blog.blogImage ? blog.blogImage : '../assets/images/default-img/default-img.jpg' %>" alt="Blog" class="blog-image">
                                             <div class="p-4">
-                                                <h2 class="blog-title h5 fw-bold mb-2"><%= blog.title %>></h2>
+                                                <h2 class="blog-title h5 fw-bold mb-2"><%= blog.title %></h2>
                                                 <p class="blog-desc text-muted"><%= blog.blog %></p>
                                             </div>
                                         </div>
